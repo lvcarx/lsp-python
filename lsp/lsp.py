@@ -18,12 +18,12 @@ class LSP:
         return self.initial_layout_algorithm.fit_transform(hi_dim)
 
     def transform(self, lo_dim_init: np.ndarray, lo_dim_indices: np.ndarray, hi_dim: np.ndarray):
-        return self.lsp_(lo_dim_init, lo_dim_indices, hi_dim)
+        return self.__lsp(lo_dim_init, lo_dim_indices, hi_dim)
 
     def fit_transform(self):
         pass
 
-    def lsp_(self, lo_dim_init: np.ndarray, lo_dim_indices: np.ndarray, hi_dim: np.ndarray):
+    def __lsp(self, lo_dim_init: np.ndarray, lo_dim_indices: np.ndarray, hi_dim: np.ndarray):
         n_control = lo_dim_init.shape[0]
         n_points = hi_dim.shape[0]
         n_neighbors = self.n_neighbors
