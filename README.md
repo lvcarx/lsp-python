@@ -1,6 +1,6 @@
 # LSPpy
 
- LSPpy is a lightweight implementation of the Least Squares Projection (LSP) dimensionality reduction technique using sklearn style API. 
+ LSPpy is a lightweight implementation of the Least Square Projection (LSP) dimensionality reduction technique using sklearn style API. 
 
 The implementation is based on "Least Square Projection: A Fast High-Precision Multidimensional Projection Technique and Its Application to Document Mapping", which can be cited using:
 
