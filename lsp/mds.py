@@ -6,7 +6,7 @@ class MDS:
     TODO
     """
     def __init__(self, n_components: int = 2):
-        self.mds = manifold.MDS(n_components=n_components)
+        self.mds = manifold.MDS(n_components=n_components, random_state=1)
 
     def fit_transform(self, hi_dim: np.ndarray):
         return self.mds.fit_transform(hi_dim)
