@@ -3,7 +3,14 @@ from sklearn import manifold
 
 class MDS:
     """
-    TODO
+    This class implements the Multidimensional Scaling (MDS) dimensionality reduction method.
+
+    Parameters
+    ----------
+
+    n_components: int (default 2)
+        The dimension to project onto.
+
     """
     def __init__(self, n_components: int = 2):
         self.mds = manifold.MDS(n_components=n_components, random_state=1)

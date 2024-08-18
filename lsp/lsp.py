@@ -7,7 +7,22 @@ from lsp.mds import MDS
 
 class LSP:
     """
-    TODO
+    This class implements the Least Squares Projection (LSP) dimensionality reduction method.
+
+
+    Parameters
+    ----------
+    n_components: int (default 2)
+        The dimension to project onto
+
+    n_neighbors: int (default 15)
+        The number of neighbors to consider for the neighborhood matrix.
+        Larger neighborhoods will lead to projections which are more alike to the initial_layout_algorithm.
+
+    initial_layout_algorithm: object (default MDS())
+        The algorithm to use for the initial layout of the low-dimensional space.
+        This algorithm should have a fit_transform method which takes a high-dimensional array as input and returns a low-dimensional array.
+
     """
     def __init__(self, n_components: int = 2, n_neighbors: int = 15, initial_layout_algorithm: MDS = MDS()):
         self.n_components = n_components
@@ -15,16 +30,30 @@ class LSP:
         self.initial_layout_algorithm = initial_layout_algorithm
 
     def fit(self, hi_dim: np.ndarray):
+        """
+        Projects the initial high-dimensional data points onto the low-dimensional space using the initial_layout_algorithm.
+
+        :param hi_dim: initial high-dimensional data points
+        :return: the low-dimensional representation
+        """
         return self.initial_layout_algorithm.fit_transform(hi_dim)
 
-    def transform(self, lo_dim_init: np.ndarray, lo_dim_indices: np.ndarray, hi_dim: np.ndarray):
-        return self.__lsp(lo_dim_init, lo_dim_indices, hi_dim)
+    def transform(self, control_points: np.ndarray, control_point_indices: np.ndarray, hi_dim: np.ndarray):
+        """
+        Projects the high-dimensional data points onto the low-dimensional space using the Least Squares Projection method and the control points.
+
+        :param control_points: initial projection created with the initial_layout_algorithm
+        :param control_point_indices: indices of the control points inside the high-dimensional data point set "hi_dim"
+        :param hi_dim: all high-dimensional data points (including the control points)
+        :return: the low-dimensional representation
+        """
+        return self.__lsp(control_points, control_point_indices, hi_dim)
 
     def fit_transform(self):
         pass
 
-    def __lsp(self, lo_dim_init: np.ndarray, lo_dim_indices: np.ndarray, hi_dim: np.ndarray):
-        n_control = lo_dim_init.shape[0]
+    def __lsp(self, control_points: np.ndarray, control_point_indices: np.ndarray, hi_dim: np.ndarray):
+        n_control = control_points.shape[0]
         n_points = hi_dim.shape[0]
         n_neighbors = self.n_neighbors
 
@@ -39,7 +68,7 @@ class LSP:
             neighborhood_matrix[i, i] = 1.0
             neighborhood_matrix[i, neighbors[i]] = -(1.0 / n_neighbors)
 
-        for l_idx, i in enumerate(lo_dim_indices):
+        for l_idx, i in enumerate(control_point_indices):
             control_matrix[l_idx, i] = 1.0
 
         A[:n_points, :] = neighborhood_matrix
@@ -47,6 +76,6 @@ class LSP:
 
         b = np.zeros(shape=(n_points + n_control, self.n_components), dtype=np.float64)
         for l_idx, i in enumerate(range(n_points, n_points + n_control)):
-            b[i] = lo_dim_init[l_idx]
+            b[i] = control_points[l_idx]
 
         return np.linalg.lstsq(A, b, rcond=None)[0]
