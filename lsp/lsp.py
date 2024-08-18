@@ -47,12 +47,20 @@ class LSP:
         :param hi_dim: all high-dimensional data points (including the control points)
         :return: the low-dimensional representation
         """
-        return self.__lsp(control_points, control_point_indices, hi_dim)
+        return self.__least_square_projection(control_points, control_point_indices, hi_dim)
 
-    def fit_transform(self):
-        pass
+    def fit_transform(self, control_point_indices: np.ndarray, hi_dim: np.ndarray):
+        """
+        Projects the high-dimensional data points onto the low-dimensional space using the Least Squares Projection method and the control points.
 
-    def __lsp(self, control_points: np.ndarray, control_point_indices: np.ndarray, hi_dim: np.ndarray):
+        :param control_point_indices: defines which points are used as control points
+        :param hi_dim: all high-dimensional data points (including the control points)
+        :return: the low dimensional representation
+        """
+        lo_dim = self.fit(hi_dim[control_point_indices])
+        return self.transform(lo_dim, control_point_indices, hi_dim)
+
+    def __least_square_projection(self, control_points: np.ndarray, control_point_indices: np.ndarray, hi_dim: np.ndarray):
         n_control = control_points.shape[0]
         n_points = hi_dim.shape[0]
         n_neighbors = self.n_neighbors
