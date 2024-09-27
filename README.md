@@ -2,9 +2,9 @@
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](./assets/digits_32.png)  |  ![](./assets/digits_64.png)  |  ![](./assets/digits_256.png)  |  ![](./assets/digits_512.png)
 
-# LSPpy
+# pyLSP
 
-LSPpy is a lightweight implementation of the Least Square Projection (LSP) dimensionality reduction technique using sklearn style API. 
+pyLSP is a lightweight python implementation of the Least Square Projection (LSP) dimensionality reduction technique using sklearn style API.
 
 The implementation is based on the paper "Least Square Projection: A Fast High-Precision Multidimensional Projection Technique and Its Application to Document Mapping", which can be cited using:
 

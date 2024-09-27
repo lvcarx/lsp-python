@@ -19,5 +19,6 @@ if __name__ == '__main__':
     X_init = lsp.fit(to_fit)
     X = lsp.transform(X_init, np.arange(0, 50), X)
 
-    plt.scatter(X[:, 0], X[:, 1], c=y)
+    plt.scatter(X[:, 0], X[:, 1], c=y, s=3)
+    plt.axis('off')
     plt.show()
