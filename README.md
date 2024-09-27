@@ -1,12 +1,12 @@
-# LSPpy
-
 32 control points             |  64 control points | 256 control points             |  512 control points
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](./assets/digits_32.png)  |  ![](./assets/digits_64.png)  |  ![](./assets/digits_256.png)  |  ![](./assets/digits_512.png)
 
+# LSPpy
+
 LSPpy is a lightweight implementation of the Least Square Projection (LSP) dimensionality reduction technique using sklearn style API. 
 
-The implementation is based on "Least Square Projection: A Fast High-Precision Multidimensional Projection Technique and Its Application to Document Mapping", which can be cited using:
+The implementation is based on the paper "Least Square Projection: A Fast High-Precision Multidimensional Projection Technique and Its Application to Document Mapping", which can be cited using:
 
 ```
 @ARTICLE{4378370,
@@ -21,4 +21,4 @@ The implementation is based on "Least Square Projection: A Fast High-Precision M
   doi={10.1109/TVCG.2007.70443}}
 ```
 
-A small working example can be found in test/iris_example.py.
+A small working example can be found in [tests/iris_example.py](tests/iris_example.py) and [tests/digits_example.py](tests/digits_example.py).
