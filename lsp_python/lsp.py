@@ -1,7 +1,7 @@
 import numpy as np
 
 from sklearn.neighbors import NearestNeighbors
-from lsp.mds import MDS
+from lsp_python.mds import MDS
 
 
 

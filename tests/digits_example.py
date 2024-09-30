@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.utils import shuffle
 from sklearn.preprocessing import MinMaxScaler
-from lsp.lsp import LSP
+from lsp_python.lsp import LSP
 
 if __name__ == '__main__':
     digits = datasets.load_digits()
