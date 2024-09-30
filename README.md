@@ -2,9 +2,9 @@
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](./assets/digits_32.png)  |  ![](./assets/digits_64.png)  |  ![](./assets/digits_256.png)  |  ![](./assets/digits_512.png)
 
-# pyLSP
+# lsp-python
 
-pyLSP is a lightweight python implementation of the Least Square Projection (LSP) dimensionality reduction technique using sklearn style API.
+lsp-python is a lightweight python implementation of the Least Square Projection (LSP) dimensionality reduction technique using sklearn style API.
 
 The implementation is based on the paper "Least Square Projection: A Fast High-Precision Multidimensional Projection Technique and Its Application to Document Mapping", which can be cited using:
 
@@ -22,3 +22,19 @@ The implementation is based on the paper "Least Square Projection: A Fast High-P
 ```
 
 A small working example can be found in [tests/iris_example.py](tests/iris_example.py) and [tests/digits_example.py](tests/digits_example.py).
+
+## Installation
+The library currently only supports Python 3.11.
+
+### Dependencies
+The library depends on the following packages:
+- numpy
+- scikit-learn
+- matplotlib
+
+### Pip
+The library can be installed using pip:
+
+```bash
+pip install lsp-python
+```
